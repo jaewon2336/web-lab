@@ -26,14 +26,13 @@
 	// 3. DB 연결(끝)
 
 	int id = Integer.parseInt(request.getParameter("id"));
-	String name = null;
-	String phone = null;
-
-	Connection conn = null;
+	// String name = null;
+	// String phone = null;
 	
 	try {
 		Class.forName("oracle.jdbc.driver.OracleDriver");
-		conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "SCOTT", "TIGER");
+		Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "SCOTT", "TIGER");
+		System.out.println("DB 연결 완료");
 
 		// 4. SELECT로 id, name, phone 받기
 		String sql = "SELECT * FROM userInfo WHERE id = ?";
@@ -41,12 +40,13 @@
 		pstmt.setInt(1, id);
 
 		ResultSet rs = pstmt.executeQuery();
+		rs.next();
 
 		id = rs.getInt("id");
-		name = rs.getString("name");
-		phone = rs.getString("phone");
+		String name = rs.getString("name");
+		String phone = rs.getString("phone");
 		
-		conn.close();
+		// conn.close();
 
 	} catch (Exception e) {
 		System.out.println("오류 : " + e.getMessage());
