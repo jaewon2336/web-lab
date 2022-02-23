@@ -22,31 +22,33 @@
 	<%
 	// 1. 테이블 생성(끝)
 	// 2. 쿼리스트링 파싱(끝)
-
-	// 3. DB 연결(끝)
-
 	int id = Integer.parseInt(request.getParameter("id"));
+	System.out.println("id : " + id);
 	// String name = null;
 	// String phone = null;
 	
 	try {
-		Class.forName("oracle.jdbc.driver.OracleDriver");
+		// 3. DB 연결(끝)
+		Class.forName("oracle.jdbc.driver.OracleDriver"); // 라이브러리 path 잡기
 		Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "SCOTT", "TIGER");
 		System.out.println("DB 연결 완료");
 
 		// 4. SELECT로 id, name, phone 받기
-		String sql = "SELECT * FROM userInfo WHERE id = ?";
+		String sql = "SELECT id, name, phone FROM userInfo WHERE id = ?";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
-		pstmt.setInt(1, id);
+		pstmt.setInt(1, id); // PK로 검색해서 무조건 데이터 1건 나옴
 
-		ResultSet rs = pstmt.executeQuery();
-		rs.next();
-
-		id = rs.getInt("id");
-		String name = rs.getString("name");
-		String phone = rs.getString("phone");
+		ResultSet rs = pstmt.executeQuery(); // 버퍼에 담겨서 자동으로 flush
 		
-		// conn.close();
+		// while을 안탈수도 있으니까 초기화를 무조건 해줘야함
+		String name = null;
+		String phone = null;
+		
+		while(rs.next()) {
+			// id = rs.getInt("id");
+			name = rs.getString("name");
+			phone = rs.getString("phone");
+		}
 
 	} catch (Exception e) {
 		System.out.println("오류 : " + e.getMessage());
@@ -56,7 +58,7 @@
 	%>
 
 	<h1>회원정보 페이지입니다. - 인증 필요</h1>
-	<h3>아이디 : <%=id%> / 이름 : <%=name %> / 전화번호 : <%=phone%></h3>
+	<h3>아이디 : <%=id %> / 이름 : <%=name %> / 전화번호 : <%=phone %></h3>
 	<hr />
 </body>
 </html>
