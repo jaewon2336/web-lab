@@ -1,5 +1,5 @@
 content_assist_autoactivation_triggers_java=abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ._
-content_assist_lru_history=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?><history maxLHS\="100" maxRHS\="10"/>
+content_assist_lru_history=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?><history maxLHS\="100" maxRHS\="10"><lhs name\="java.util.Collection"><rhs name\="java.util.ArrayList"/></lhs><lhs name\="java.lang.Iterable"><rhs name\="java.util.ArrayList"/></lhs><lhs name\="java.util.List"><rhs name\="java.util.ArrayList"/></lhs><lhs name\="site.metacoding.mvc.domain.MyUser"><rhs name\="site.metacoding.mvc.domain.MyUser"/></lhs><lhs name\="site.metacoding.mvc.web.MyUserController"><rhs name\="site.metacoding.mvc.web.MyUserController"/></lhs><lhs name\="site.metacoding.mvc.domain.MyUserRepository"><rhs name\="site.metacoding.mvc.domain.MyUserRepository"/></lhs></history>
 content_assist_number_of_computers=13
 content_assist_proposals_background=255,255,255
 content_assist_proposals_foreground=0,0,0
